@@ -1,103 +1,76 @@
-# Startup Success Analysis and Prediction 🚀
+# Startup Success Analysis and Prediction
 
-An end-to-end data science and machine learning project that analyzes factors influencing whether a startup gets **acquired** (success) or **closed**. This project performs comprehensive Exploratory Data Analysis (EDA) and builds a Random Forest Classifier to identify and predict the key drivers of startup outcomes.
+This project analyzes the factors that influence whether a startup succeeds (gets acquired) or closes down. I performed exploratory data analysis (EDA) and trained a Random Forest model on a startup dataset to identify the key drivers of these outcomes.
 
----
+## Project Description
 
-## 📌 Project Overview
+Understanding why startups succeed or fail is a common topic in entrepreneurship and data science. In this project, I used a historical startup dataset to:
+1. Clean and preprocess the tabular data.
+2. Conduct exploratory data analysis to look at relationships between startup features (like location, funding rounds, relationships) and their final status.
+3. Train a Random Forest Classifier to predict if a startup will be acquired.
+4. Extract feature importances to see which factors contribute the most to startup success.
 
-Understanding the factors that lead to startup success or failure is crucial for founders, investors, and policymakers. This project uses historical startup data to:
-1. Clean and preprocess complex tabular startup metadata.
-2. Conduct deep EDA to uncover patterns in geography, industry, funding, relationships, and age.
-3. Quantify relationships via correlation analysis.
-4. Train a **Random Forest Classifier** to predict startup acquisition.
-5. Extract and visualize **Feature Importances** to pinpoint the most critical drivers of acquisition.
+## Dataset Info
 
----
+The dataset used is `startup data.csv`, which has 923 rows and 49 columns. Some of the main features include:
+* **Target Variable:** `status` (either `acquired` or `closed`).
+* **Funding Features:** Total funding in USD, number of funding rounds, angel investment, venture capital (VC) backing, and rounds (A, B, C, D).
+* **Company Profile:** Found date, age at first and last funding, location (state and city), and industry category (software, web, mobile, biotech, etc.).
+* **Network Features:** Number of relationships, milestones reached, and average participant count in funding.
 
-## 📊 Dataset Profile
+## Dependencies
 
-The dataset (`startup data.csv`) contains profiles of **923 startups** with **49 initial features**, including:
-* **Target Variable:** `status` (`acquired` vs. `closed`)
-* **Temporal features:** Founding date, closing date, dates/ages at first and last funding/milestones.
-* **Funding features:** Total funding (USD), number of funding rounds, presence of venture capital (VC) or angel funding, and round-specific markers (A, B, C, D).
-* **Network & Quality indicators:** Number of relationships, milestones, top 500 status, and average participants.
-* **Categorical markers:** State code, city, and industry categories (Software, Web, Mobile, Biotech, Enterprise, etc.).
+The project uses Python 3 along with the following libraries:
+* `pandas` and `numpy` for data cleaning and manipulation.
+* `matplotlib` and `seaborn` for plotting and visualization.
+* `scikit-learn` for splitting the data, training the Random Forest model, and evaluating performance.
 
----
+## Project Structure
 
-## 🛠️ Tech Stack & Libraries
+* `startup_analysis.ipynb`: The main Jupyter Notebook containing the code for EDA, data cleaning, and modeling.
+* `startup data.csv`: The dataset containing startup records.
+* `.gitignore`: Configured to ignore the virtual environment (`.venv`) and checkpoint files.
+* `README.md`: This file.
 
-* **Language:** Python 3.x
-* **Data Manipulation:** `pandas`, `numpy`
-* **Visualization:** `matplotlib`, `seaborn`
-* **Machine Learning:** `scikit-learn` (Random Forest, train-test split, evaluations)
-* **Environment:** Jupyter Notebook / VS Code
-
----
-
-## 📂 Repository Structure
-
-```directory
-├── startup_analysis.ipynb   # Main Jupyter Notebook with step-by-step analysis and model
-├── startup data.csv         # The raw dataset used for analysis
-├── .gitignore               # Ignored local environments and temp files
-└── README.md                # Project documentation (this file)
-```
-
----
-
-## 📈 Analysis Workflow & Key Steps
+## Steps Completed
 
 ### 1. Data Cleaning
-* Dropped redundant/identifier columns (`Unnamed: 0`, `Unnamed: 6`, `state_code.1`, `object_id`).
-* Imputed missing values for milestone age features with standard defaults.
+* Dropped unnecessary columns like `Unnamed: 0`, `Unnamed: 6`, `state_code.1`, and `object_id`.
+* Replaced missing values in milestone age columns with 0.
 
 ### 2. Exploratory Data Analysis (EDA)
-* **Target Distribution:** Analyzed the balance between acquired and closed startups.
-* **Geographic Trends:** Mapped state-level distributions (e.g., California (CA), New York (NY), Massachusetts (MA)) to see where successful startups cluster.
-* **Industry Insights:** Explored performance across various tech categories (software, web, enterprise, biotech).
-* **Funding & Relationship Dynamics:** Investigated how the volume of funding rounds, total USD raised, and the size of the startup's professional network (relationships) impact its success rate.
+* Plotted the class distribution of the target variable (`status`).
+* Checked how startups are distributed across different states (e.g., CA, NY, MA) and tech industries.
+* Analyzed relationships between funding amounts, funding rounds, and startup success.
 
-### 3. Machine Learning Modeling
-* **Algorithm:** Random Forest Classifier.
-* **Validation:** Train-test split on the dataset.
-* **Performance Metrics:** Evaluated using a Classification Report (Precision, Recall, F1-Score), Confusion Matrix, and ROC-AUC score.
-* **Feature Importance:** Extracted the feature importances to show exactly which variables (such as number of relationships, milestones, or early funding rounds) hold the highest predictive power.
+### 3. Machine Learning and Evaluation
+* Split the dataset into training and testing sets.
+* Trained a Random Forest Classifier.
+* Evaluated the model using precision, recall, F1-score, confusion matrix, and ROC-AUC score.
+* Plotted the feature importances to identify the most significant features.
 
----
+## How to Run
 
-## 🚀 Getting Started
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/turkogluenes/Startup-Data-Analysis.git
+   cd Startup-Data-Analysis
+   ```
 
-### Prerequisites
+2. Set up a virtual environment and install dependencies:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+   ```
 
-Ensure you have Python installed, then set up your virtual environment and install the required dependencies:
+3. Open the Jupyter Notebook:
+   ```bash
+   jupyter notebook startup_analysis.ipynb
+   ```
 
-```bash
-# Clone the repository
-git clone https://github.com/turkogluenes/Startup-Data-Analysis.git
-cd Startup-Data-Analysis
+## Key Findings
 
-# Create a virtual environment
-python3 -m venv .venv
-source .venv/bin/activate
-
-# Install dependencies
-pip install pandas numpy matplotlib seaborn scikit-learn jupyter
-```
-
-### Running the Notebook
-
-Start Jupyter Notebook or open the project in VS Code to run the analysis:
-
-```bash
-jupyter notebook startup_analysis.ipynb
-```
-
----
-
-## 🔑 Key Findings & Takeaways
-
-* **Relationships Matter:** The number of professional relationships and connections a startup builds is one of the strongest indicators of eventual acquisition.
-* **Milestones as Validation:** Reaching key operational milestones early and often serves as a vital success signal for prospective acquirers.
-* **Early Funding Strategy:** Startups that secure institutional backing (like Round A/B) or show high participant counts in funding rounds exhibit higher rates of success.
+* **Relationships:** The number of professional relationships or network connections is one of the strongest indicators of startup success.
+* **Milestones:** Startups that reach their first and last milestones have higher acquisition rates.
+* **Funding Rounds:** Having active early-stage funding rounds (like Round A and B) correlates positively with a startup being acquired.
